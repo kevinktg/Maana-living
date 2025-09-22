@@ -6,13 +6,15 @@
     <title>AI Opportunity Audit: Manaa Living</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #e7f2f8;
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F8F8;
+            color: #666666;
         }
         .chart-container {
             position: relative;
@@ -28,79 +30,71 @@
                 height: 350px;
             }
         }
+        h1, h2, h3, h4, .text-brand-dark {
+            color: #222222;
+        }
+        .text-brand-gold {
+            color: #B89E84;
+        }
+        .bg-brand-gold {
+            background-color: #B89E84;
+        }
+        .border-brand-gold {
+            border-color: #B89E84;
+        }
     </style>
 </head>
-<body class="text-[#000428]">
+<body>
 
     <div class="container mx-auto p-4 md:p-8">
 
         <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-black text-[#004e92] mb-2">AI Opportunity Audit</h1>
-            <h2 class="text-2xl md:text-3xl font-bold text-[#428bca]">Manaa Living | Hospitality Sector Analysis</h2>
-        </header>
-
-        <!-- MEDIA SECTION: Embedded Audio & Video -->
-        <section id="media" class="mb-12">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            <!-- Embedded Audio Box -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center">
-              <h3 class="text-xl font-bold text-[#004e92] mb-4">Listen: Audit Deep Dive</h3>
-              <audio controls class="w-full max-w-md mb-2">
-                <source src="Fixing-the-Premium-Paradox_-How-AI-Check-in-and-Chatbots-Stop-the-Bleeding-and-Boost-Revenue-for-Luxury-Stays.mp3" type="audio/mpeg">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-dark mb-2">AI Opportunity Audit</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-brand-gold">Manaa Living | Hospitality Sector Analysis</h2>
+            <div class="mt-4 text-center">
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">🔊 Sound On</span>
+            </div>
+            <!-- === ACTION REQUIRED: AUDIO FILE === -->
+            <!-- Replace "assets/audio/audio_overview.mp3" with the actual path to your audio file. -->
+            <audio controls autoplay class="w-full max-w-md mx-auto mt-6">
+                <source src="assets/audio/audio_overview.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
-              </audio>
-              <div class="text-gray-600 text-sm mt-2 text-center">
-                Embedded direct from the opportunity report. <span class="font-semibold">Stream or download as needed.</span>
-              </div>
-            </div>
-
-            <!-- Embedded Video Placeholder -->
-            <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
-              <h3 class="text-xl font-bold text-[#004e92] mb-4">Watch: (Your Video Here)</h3>
-              <div class="w-full h-48 flex items-center justify-center bg-[#e7f2f8] border-2 border-dashed border-[#adcbe3] rounded-xl">
-                <span class="text-[#adcbe3] text-lg font-semibold">
-                  Video embed coming soon... (YouTube, Loom, or local video)
-                </span>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
+            </audio>
+        </header>
+        
         <main>
             <section id="score" class="mb-16">
                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center">
-                    <h3 class="text-xl font-semibold text-[#004e92] mb-4">Overall AI Opportunity Score</h3>
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Overall AI Opportunity Score</h3>
                     <div class="relative w-64 h-64 mx-auto">
                         <canvas id="overallScoreChart"></canvas>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span class="text-6xl font-black text-[#000428]">72</span>
-                            <span class="text-2xl font-bold text-gray-500 self-end mb-5 ml-1">/100</span>
+                        <div class="absolute inset-0 flex items-baseline justify-center pt-20">
+                            <span class="text-8xl font-black text-brand-dark">72</span>
+                            <span class="text-3xl font-bold text-gray-400 ml-1">/100</span>
                         </div>
                     </div>
-                    <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-700">
-                        This score indicates a <span class="font-bold text-[#004e92]">High Potential</span> for impactful AI integration. While foundational tech exists, significant opportunities in customer-facing and content-driven areas are ripe for enhancement.
+                    <p class="mt-6 max-w-2xl mx-auto text-lg">
+                        This score indicates a <span class="font-bold text-brand-dark">High Potential</span> for impactful AI integration. While foundational tech exists, significant opportunities in customer-facing and content-driven areas are ripe for enhancement.
                     </p>
                 </div>
             </section>
 
             <section id="breakdown" class="mb-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-3xl font-black text-[#004e92]">Industry-Specific Scoring Breakdown</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-700">Your score is calculated using our IA-AIOS framework, which adjusts scoring weights for the <span class="font-bold">Hospitality & Tourism</span> industry. This model prioritizes the guest journey and dynamic content, as these are critical drivers of success in your sector.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">Industry-Specific Scoring Breakdown</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">Your score is calculated using our IA-AIOS framework, which adjusts scoring weights for the <span class="font-semibold">Hospitality & Tourism</span> industry. This model prioritizes the guest journey and dynamic content, as these are critical drivers of success in your sector.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
-                    <div class="md:col-span-2 bg-white rounded-2xl shadow-lg p-6">
-                        <h4 class="text-xl font-bold text-center mb-4 text-[#004e92]">Hospitality Weighting Profile</h4>
+                <div class="space-y-8">
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h4 class="text-xl font-bold text-center mb-4 text-brand-dark">Hospitality Weighting Profile</h4>
                         <div class="chart-container h-80 md:h-96">
                             <canvas id="industryWeightsChart"></canvas>
                         </div>
                     </div>
-                    <div class="md:col-span-3 bg-white rounded-2xl shadow-lg p-6">
-                        <h4 class="text-xl font-bold text-center mb-4 text-[#004e92]">Weighted Score Contribution</h4>
-                        <div class="chart-container h-96 md:h-[450px] max-w-full">
+                    <div class="bg-white rounded-2xl shadow-lg p-6">
+                        <h4 class="text-xl font-bold text-center mb-4 text-brand-dark">Weighted Score Contribution</h4>
+                        <div class="chart-container h-96 md:h-[450px]" style="max-width: 800px;">
                             <canvas id="scoreBreakdownChart"></canvas>
                         </div>
                     </div>
@@ -109,38 +103,38 @@
 
             <section id="priorities" class="mb-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-3xl font-black text-[#004e92]">What To Do Next: Your Priority Matrix</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-700">We use the Eisenhower Matrix to classify recommended AI solutions by urgency and importance, ensuring you focus on what delivers the most value, first.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">What To Do Next: Your Priority Matrix</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">We use the Eisenhower Matrix to classify recommended AI solutions by urgency and importance, ensuring you focus on what delivers the most value, first.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <div class="bg-green-100 border-l-8 border-green-500 rounded-lg p-6 shadow-md">
-                        <h4 class="text-2xl font-bold text-green-800">Urgent & Important</h4>
-                        <p class="text-green-700 mt-2 mb-4 font-semibold">Do First: High-impact tasks that solve immediate problems.</p>
-                        <ul class="list-disc list-inside space-y-2 text-green-900">
+                    <div class="bg-white border-l-8 border-brand-gold rounded-lg p-6 shadow-lg">
+                        <h4 class="text-2xl font-bold text-brand-gold">Urgent & Important</h4>
+                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Do First: High-impact tasks that solve immediate problems.</p>
+                        <ul class="list-disc list-inside space-y-2 text-brand-dark">
                             <li>AI-Powered Client Communication Automation</li>
                             <li>Automated Document & Inquiry Processing</li>
                         </ul>
                     </div>
-                    <div class="bg-blue-100 border-l-8 border-blue-500 rounded-lg p-6 shadow-md">
-                        <h4 class="text-2xl font-bold text-blue-800">Important, Not Urgent</h4>
-                        <p class="text-blue-700 mt-2 mb-4 font-semibold">Schedule: Strategic initiatives for long-term growth.</p>
-                        <ul class="list-disc list-inside space-y-2 text-blue-900">
+                    <div class="bg-white border-l-8 border-gray-400 rounded-lg p-6 shadow-md">
+                        <h4 class="text-2xl font-bold text-brand-dark">Important, Not Urgent</h4>
+                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Schedule: Strategic initiatives for long-term growth.</p>
+                        <ul class="list-disc list-inside space-y-2 text-brand-dark">
                             <li>Workflow & Process Analytics</li>
                             <li>Predictive Client Intelligence & Personalization</li>
                         </ul>
                     </div>
-                    <div class="bg-yellow-100 border-l-8 border-yellow-500 rounded-lg p-6 shadow-md">
-                        <h4 class="text-2xl font-bold text-yellow-800">Urgent, Less Important</h4>
-                        <p class="text-yellow-700 mt-2 mb-4 font-semibold">Delegate: Quick tasks that can be easily handled.</p>
-                        <ul class="list-disc list-inside space-y-2 text-yellow-900">
+                    <div class="bg-white border-l-8 border-gray-400 rounded-lg p-6 shadow-md">
+                        <h4 class="text-2xl font-bold text-brand-dark">Urgent, Less Important</h4>
+                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Delegate: Quick tasks that can be easily handled.</p>
+                        <ul class="list-disc list-inside space-y-2 text-brand-dark">
                             <li>Basic Appointment Scheduling Chatbot</li>
                             <li>Contact Management System Upgrades</li>
                         </ul>
                     </div>
-                    <div class="bg-gray-100 border-l-8 border-gray-500 rounded-lg p-6 shadow-md">
-                        <h4 class="text-2xl font-bold text-gray-800">Less Urgent / Important</h4>
-                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Eliminate/Delay: Lower priority tasks for future consideration.</p>
-                        <ul class="list-disc list-inside space-y-2 text-gray-900">
+                    <div class="bg-gray-50 border-l-8 border-gray-300 rounded-lg p-6 shadow-md">
+                        <h4 class="text-2xl font-bold text-gray-500">Less Urgent / Important</h4>
+                        <p class="text-gray-600 mt-2 mb-4 font-semibold">Eliminate/Delay: Lower priority tasks for future consideration.</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
                             <li>Advanced Internal Analytics Dashboards</li>
                             <li>Complex, Multi-System Integrations</li>
                         </ul>
@@ -150,40 +144,40 @@
             
             <section id="roadmap" class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-3xl font-black text-[#004e92]">Your Tailored AI Roadmap</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-700">Based on your classification as a <span class="font-bold">Small Business</span> in the hospitality sector, we recommend a focus on cost-effective, high-impact solutions that can be implemented quickly.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">Your Tailored AI Roadmap</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">Based on your classification as a <span class="font-semibold">Small Business</span> in the hospitality sector, we recommend a focus on cost-effective, high-impact solutions that can be implemented quickly.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-[#428bca]">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-brand-gold">
                         <div class="text-center">
-                            <div class="text-5xl font-black text-[#004e92]">1</div>
+                            <div class="text-5xl font-black text-brand-dark">1</div>
                             <h4 class="text-xl font-bold mt-2">AI Communication Hub</h4>
                         </div>
-                        <p class="text-gray-600 mt-4">Implement a basic chatbot on your website to handle common guest inquiries (check-in/out times, amenities, local tips) 24/7, reducing staff workload and improving guest satisfaction.</p>
+                        <p class="mt-4">Implement a basic chatbot on your website to handle common guest inquiries (check-in/out times, amenities, local tips) 24/7, reducing staff workload and improving guest satisfaction.</p>
                         <div class="mt-6 space-y-2 text-sm">
                             <p><span class="font-bold">Focus:</span> Customer Experience</p>
                             <p><span class="font-bold">Budget:</span> $500 - $2,000 / mo</p>
                             <p><span class="font-bold">Timeline:</span> 30 - 60 days</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-[#428bca]">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-brand-gold">
                         <div class="text-center">
-                          <div class="text-5xl font-black text-[#004e92]">2</div>
+                           <div class="text-5xl font-black text-brand-dark">2</div>
                             <h4 class="text-xl font-bold mt-2">Automated Scheduling</h4>
                         </div>
-                        <p class="text-gray-600 mt-4">Integrate an automated booking and scheduling tool that syncs with your availability, allowing guests to book stays, tours, or services directly without manual confirmation.</p>
+                        <p class="mt-4">Integrate an automated booking and scheduling tool that syncs with your availability, allowing guests to book stays, tours, or services directly without manual confirmation.</p>
                         <div class="mt-6 space-y-2 text-sm">
                             <p><span class="font-bold">Focus:</span> Operational Process</p>
                             <p><span class="font-bold">Budget:</span> Included in existing platforms</p>
                             <p><span class="font-bold">Timeline:</span> &lt; 30 days (Quick Win)</p>
                         </div>
                     </div>
-                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-[#428bca]">
+                    <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-brand-gold">
                         <div class="text-center">
-                            <div class="text-5xl font-black text-[#004e92]">3</div>
+                            <div class="text-5xl font-black text-brand-dark">3</div>
                             <h4 class="text-xl font-bold mt-2">Content Generation Assist</h4>
                         </div>
-                        <p class="text-gray-600 mt-4">Use AI tools to create engaging blog posts about local events, attractions, and travel tips. This boosts SEO, drives organic traffic, and provides valuable content for guests.</p>
+                        <p class="mt-4">Use AI tools to create engaging blog posts about local events, attractions, and travel tips. This boosts SEO, drives organic traffic, and provides valuable content for guests.</p>
                          <div class="mt-6 space-y-2 text-sm">
                             <p><span class="font-bold">Focus:</span> Content Management</p>
                             <p><span class="font-bold">Budget:</span> $100 - $500 / mo</p>
@@ -195,219 +189,171 @@
             
             <section id="timeline" class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-3xl font-black text-[#004e92]">Phased Implementation Plan</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg text-gray-700">We recommend a structured rollout to ensure smooth adoption and maximize return on investment. Each phase builds upon the last, creating a robust AI foundation for your business.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">Phased Implementation Plan</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">We recommend a structured rollout to ensure smooth adoption and maximize return on investment. Each phase builds upon the last, creating a robust AI foundation for your business.</p>
                 </div>
                 <div class="relative max-w-2xl mx-auto">
-                    <div class="border-l-4 border-[#adcbe3] absolute h-full top-0 left-4"></div>
+                    <div class="border-l-4 border-gray-300 absolute h-full top-0 left-4"></div>
                     <div class="mb-10 ml-12">
-                        <div class="absolute w-8 h-8 bg-[#004e92] rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">1</div>
+                        <div class="absolute w-8 h-8 bg-brand-dark rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">1</div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-bold text-[#004e92]">Phase 1: Quick Wins (0-30 Days)</h4>
-                            <p class="mt-2 text-gray-700">Deploy the <span class="font-semibold">Automated Scheduling</span> tool. This is a low-cost, high-impact solution that immediately streamlines a core business process and improves the user booking experience.</p>
+                            <h4 class="text-xl font-bold text-brand-dark">Phase 1: Quick Wins (0-30 Days)</h4>
+                            <p class="mt-2">Deploy the <span class="font-semibold">Automated Scheduling</span> tool. This is a low-cost, high-impact solution that immediately streamlines a core business process and improves the user booking experience.</p>
                         </div>
                     </div>
                     <div class="mb-10 ml-12">
-                        <div class="absolute w-8 h-8 bg-[#004e92] rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">2</div>
+                        <div class="absolute w-8 h-8 bg-brand-dark rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">2</div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-bold text-[#004e92]">Phase 2: Core Automation (30-90 Days)</h4>
-                            <p class="mt-2 text-gray-700">Implement the <span class="font-semibold">AI Communication Hub (Chatbot)</span> and begin the <span class="font-semibold">Content Generation</span> strategy. This phase focuses on automating repetitive communication and building your online presence.</p>
+                            <h4 class="text-xl font-bold text-brand-dark">Phase 2: Core Automation (30-90 Days)</h4>
+                            <p class="mt-2">Implement the <span class="font-semibold">AI Communication Hub (Chatbot)</span> and begin the <span class="font-semibold">Content Generation</span> strategy. This phase focuses on automating repetitive communication and building your online presence.</p>
                         </div>
                     </div>
                     <div class="ml-12">
-                        <div class="absolute w-8 h-8 bg-[#004e92] rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">3</div>
+                        <div class="absolute w-8 h-8 bg-brand-dark rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">3</div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-bold text-[#004e92]">Phase 3: Optimization & Scaling (90-180 Days)</h4>
-                            <p class="mt-2 text-gray-700">Analyze chatbot interaction data to refine responses. Scale up content production based on SEO performance. Begin exploring <span class="font-semibold">Data Utilization</span> opportunities like guest feedback analysis.</p>
+                            <h4 class="text-xl font-bold text-brand-dark">Phase 3: Optimization & Scaling (90-180 Days)</h4>
+                            <p class="mt-2">Analyze chatbot interaction data to refine responses. Scale up content production based on SEO performance. Begin exploring <span class="font-semibold">Data Utilization</span> opportunities like guest feedback analysis.</p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="video-instructions" class="mb-16">
+                <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center justify-center">
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Video Instructions</h3>
+                     <!-- === ACTION REQUIRED: VIDEO FILE / EMBED === -->
+                     <!-- Replace this entire div with your video embed code from YouTube/Loom, -->
+                     <!-- OR replace it with a <video> tag pointing to your video file, like: -->
+                     <!-- <video controls class="w-full rounded-lg"><source src="assets/video/video_instructions.mp4" type="video/mp4"></video> -->
+                    <div class="w-full h-64 flex items-center justify-center bg-gray-100 border-2 border-dashed border-gray-300 rounded-xl">
+                        <span class="text-gray-400 text-lg font-semibold text-center p-4">
+                           Your NotebookLM Video Embed Here
+                        </span>
                     </div>
                 </div>
             </section>
         </main>
         
-        <footer class="text-center mt-16 pt-8 border-t-2 border-[#adcbe3]">
-            <p class="text-gray-600">This report was generated by the Industry-Adaptive AI Opportunity Scoring (IA-AIOS) Framework.</p>
-            <p class="text-sm text-gray-500 mt-1">Analysis Date: September 22, 2025</p>
+        <section id="download-package" class="mb-16">
+            <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+                <h3 class="text-3xl font-bold text-brand-dark">Download Full Briefing Package</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-lg">Download all assets from this briefing, including the interactive report, media files, and the formal written analysis, packaged in a single .zip file.</p>
+                <!-- === ACTION REQUIRED: REPORT DOCUMENT === -->
+                <!-- Place your report document (e.g., "Manaa_Living_AI_Audit_Report.docx") in the root of the project folder. -->
+                <button id="download-btn" class="mt-6 bg-brand-gold text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition-transform transform hover:scale-105">
+                    Download All Files
+                </button>
+                <p id="zip-status" class="text-sm text-gray-500 mt-4"></p>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t-2 border-gray-200">
+            <p class="text-sm">This report was generated by the Industry-Adaptive AI Opportunity Scoring (IA-AIOS) Framework.</p>
+            <p class="text-xs text-gray-400 mt-1">Analysis Date: September 22, 2025</p>
         </footer>
     </div>
 
 <script>
-    const brilliantBlues = {
-        darkest: '#000428',
-        dark: '#004e92',
-        medium: '#428bca',
-        light: '#adcbe3',
-        lightest: '#e7f2f8'
-    };
+    document.addEventListener('DOMContentLoaded', () => {
 
-    function wrapLabels(label) {
-        const max_width = 16;
-        if (typeof label !== 'string' || label.length <= max_width) {
-            return label;
-        }
-        const words = label.split(' ');
-        let lines = [];
-        let currentLine = '';
-        words.forEach(word => {
-            if ((currentLine + ' ' + word).trim().length > max_width) {
-                lines.push(currentLine.trim());
-                currentLine = word;
-            } else {
-                currentLine = (currentLine + ' ' + word).trim();
+        const manaaPalette = { dark: '#222222', gold: '#B89E84', lightGrey: '#F8F8F8', mediumGrey: '#E0E0E0', text: '#666666' };
+
+        // Charting Script
+        (function() {
+            function wrapLabels(label) {
+                const max_width = 16;
+                if (typeof label !== 'string' || label.length <= max_width) return label;
+                const words = label.split(' ');
+                let lines = []; let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > max_width) {
+                        lines.push(currentLine.trim()); currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine) lines.push(currentLine.trim());
+                return lines;
             }
-        });
-        if (currentLine) {
-            lines.push(currentLine.trim());
-        }
-        return lines;
-    }
 
-    const defaultTooltipOptions = {
-        plugins: {
-            tooltip: {
-                callbacks: {
-                    title: function(tooltipItems) {
-                        const item = tooltipItems[0];
-                        let label = item.chart.data.labels[item.dataIndex];
-                        if (Array.isArray(label)) {
-                            return label.join(' ');
-                        } else {
-                            return label;
+            const defaultTooltipOptions = { plugins: { tooltip: { callbacks: { title: function(tooltipItems) {
+                const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            }}}}};
+            
+            new Chart(document.getElementById('overallScoreChart').getContext('2d'), {
+                type: 'doughnut', data: { labels: ['Score', 'Remaining'], datasets: [{ data: [72, 28], backgroundColor: [manaaPalette.dark, '#EEEEEE'], borderColor: [manaaPalette.dark, '#EEEEEE'], borderWidth: 1, cutout: '80%' }] },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { enabled: false } } }
+            });
+
+            const hospitalityLabels = ['Customer Experience', 'Content Management', 'Operational Process', 'Data Utilization', 'Technical Readiness'].map(wrapLabels);
+            new Chart(document.getElementById('industryWeightsChart').getContext('2d'), {
+                type: 'radar', data: { labels: hospitalityLabels, datasets: [{ label: 'Hospitality Weighting', data: [40, 25, 15, 15, 5], backgroundColor: 'rgba(184, 158, 132, 0.2)', borderColor: manaaPalette.gold, pointBackgroundColor: manaaPalette.gold, pointBorderColor: '#fff', pointHoverBackgroundColor: '#fff', pointHoverBorderColor: manaaPalette.gold }] },
+                options: { responsive: true, maintainAspectRatio: false, ...defaultTooltipOptions, scales: { r: { angleLines: { color: manaaPalette.mediumGrey }, grid: { color: manaaPalette.mediumGrey }, pointLabels: { font: { size: 12 }, color: manaaPalette.dark }, ticks: { backdropColor: 'transparent', color: manaaPalette.text, stepSize: 10 }, suggestedMin: 0, suggestedMax: 40 } }, plugins: { ...defaultTooltipOptions.plugins, legend: { display: false } } }
+            });
+
+            const breakdownLabels = ['Customer Experience Optimization', 'Content Management Efficiency', 'Operational Process Indicators', 'Data Utilization Maturity', 'Technical Readiness'].map(wrapLabels);
+            new Chart(document.getElementById('scoreBreakdownChart').getContext('2d'), {
+                type: 'bar', data: { labels: breakdownLabels, datasets: [{ label: 'Weighted Score', data: [34.0, 17.5, 9.0, 7.5, 4.0], backgroundColor: [ manaaPalette.dark, '#555555', manaaPalette.gold, '#D3C5B9', manaaPalette.mediumGrey ], borderColor: manaaPalette.dark, borderWidth: 1 }] },
+                options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, ...defaultTooltipOptions, scales: { x: { beginAtZero: true, grid: { display: false }, ticks: { color: manaaPalette.dark } }, y: { grid: { display: false }, ticks: { color: manaaPalette.dark } } }, plugins: { ...defaultTooltipOptions.plugins, legend: { display: false } } }
+            });
+        })();
+
+        // Download Script
+        const downloadBtn = document.getElementById('download-btn');
+        const zipStatus = document.getElementById('zip-status');
+        
+        downloadBtn.addEventListener('click', async () => {
+            zipStatus.textContent = 'Zipping files, please wait...';
+            downloadBtn.disabled = true;
+            downloadBtn.classList.add('opacity-50', 'cursor-not-allowed');
+
+            try {
+                const zip = new JSZip();
+
+                const filesToZip = [
+                    { name: 'Manaa_Living_AI_Audit_Report.docx', path: 'Manaa_Living_AI_Audit_Report.docx' },
+                    { name: 'assets/audio/audio_overview.mp3', path: 'assets/audio/audio_overview.mp3' },
+                    { name: 'assets/video/video_instructions.mp4', path: 'assets/video/video_instructions.mp4' },
+                ];
+                
+                // Add the current HTML file
+                const htmlContent = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+                zip.file('index.html', htmlContent);
+
+                for (const file of filesToZip) {
+                    try {
+                        const response = await fetch(file.path);
+                        if (!response.ok) {
+                           console.warn(`Could not fetch ${file.path}. Skipping file. This is expected if the file doesn't exist locally yet.`);
+                           continue;
                         }
+                        const blob = await response.blob();
+                        zip.file(file.name, blob);
+                    } catch (e) {
+                         console.warn(`Error fetching ${file.path}. Skipping file.`, e);
                     }
                 }
-            }
-        }
-    };
-    
-    const overallScoreCtx = document.getElementById('overallScoreChart').getContext('2d');
-    new Chart(overallScoreCtx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Score', 'Remaining'],
-            datasets: [{
-                data: [72, 28],
-                backgroundColor: [brilliantBlues.dark, brilliantBlues.lightest],
-                borderColor: [brilliantBlues.dark, brilliantBlues.lightest],
-                borderWidth: 1,
-                cutout: '80%'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: { enabled: false }
-            }
-        }
-    });
 
-    const industryWeightsCtx = document.getElementById('industryWeightsChart').getContext('2d');
-    const hospitalityLabels = [
-        'Customer Experience', 
-        'Content Management', 
-        'Operational Process', 
-        'Data Utilization', 
-        'Technical Readiness'
-    ].map(wrapLabels);
-    
-    new Chart(industryWeightsCtx, {
-        type: 'radar',
-        data: {
-            labels: hospitalityLabels,
-            datasets: [{
-                label: 'Hospitality Weighting',
-                data: [40, 25, 15, 15, 5],
-                backgroundColor: 'rgba(66, 139, 202, 0.2)',
-                borderColor: brilliantBlues.medium,
-                pointBackgroundColor: brilliantBlues.medium,
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: brilliantBlues.medium
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            ...defaultTooltipOptions,
-            scales: {
-                r: {
-                    angleLines: { color: brilliantBlues.light },
-                    grid: { color: brilliantBlues.light },
-                    pointLabels: { 
-                        font: { size: 12 },
-                        color: brilliantBlues.darkest
-                    },
-                    ticks: {
-                        backdropColor: 'transparent',
-                        color: brilliantBlues.dark,
-                        stepSize: 10
-                    },
-                    suggestedMin: 0,
-                    suggestedMax: 40
-                }
-            },
-            plugins: {
-                ...defaultTooltipOptions.plugins,
-                legend: {
-                    display: false
-                }
+                const content = await zip.generateAsync({ type: 'blob' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(content);
+                link.download = 'Manaa_Living_AI_Briefing_Package.zip';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                zipStatus.textContent = 'Download complete!';
+            } catch (error) {
+                console.error('Error creating zip file:', error);
+                zipStatus.textContent = 'Error creating package. See console for details.';
+            } finally {
+                downloadBtn.disabled = false;
+                downloadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
             }
-        }
-    });
-
-    const scoreBreakdownCtx = document.getElementById('scoreBreakdownChart').getContext('2d');
-    const breakdownLabels = [
-        'Customer Experience Optimization',
-        'Content Management Efficiency',
-        'Operational Process Indicators',
-        'Data Utilization Maturity',
-        'Technical Readiness'
-    ].map(wrapLabels);
-
-    new Chart(scoreBreakdownCtx, {
-        type: 'bar',
-        data: {
-            labels: breakdownLabels,
-            datasets: [{
-                label: 'Weighted Score',
-                data: [34.0, 17.5, 9.0, 7.5, 4.0],
-                backgroundColor: [
-                    brilliantBlues.dark,
-                    brilliantBlues.medium,
-                    brilliantBlues.light,
-                    '#c5d9e9',
-                    brilliantBlues.lightest
-                ],
-                borderColor: brilliantBlues.dark,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            indexAxis: 'y',
-            responsive: true,
-            maintainAspectRatio: false,
-            ...defaultTooltipOptions,
-            scales: {
-                x: {
-                    beginAtZero: true,
-                    grid: { display: false },
-                    ticks: { color: brilliantBlues.darkest }
-                },
-                y: {
-                    grid: { display: false },
-                    ticks: { color: brilliantBlues.darkest }
-                }
-            },
-            plugins: {
-                ...defaultTooltipOptions.plugins,
-                legend: {
-                    display: false
-                }
-            }
-        }
+        });
     });
 </script>
 </body>
 </html>
+
