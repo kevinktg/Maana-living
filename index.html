@@ -42,19 +42,104 @@
         .border-brand-gold {
             border-color: #B89E84;
         }
+
+        /* --- Chatbot Styles --- */
+        #chat-window {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 90%;
+            max-width: 400px;
+            height: 500px;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        #chat-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #222222; /* brand dark */
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
+        #chat-header {
+            background-color: #222222; /* brand dark */
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #F8F8F8; /* light grey */
+        }
+        .message {
+            margin-bottom: 10px;
+            max-width: 85%;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 10px;
+        }
+        .message.bot {
+            background-color: #B89E84; /* brand gold */
+            color: white;
+            border-radius: 10px 10px 10px 0;
+            align-self: flex-start;
+        }
+        .message.user {
+            background-color: #E0E0E0; /* medium grey */
+            color: #222222;
+            border-radius: 10px 10px 0 10px;
+            margin-left: auto;
+        }
+        #chat-input-area {
+            display: flex;
+            border-top: 1px solid #E0E0E0;
+        }
+        #chat-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+        #send-button {
+            background-color: #B89E84; /* brand gold */
+            color: white;
+            padding: 10px 15px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s;
+        }
+        #send-button:hover {
+            background-color: #222222; /* brand dark */
+        }
     </style>
 </head>
 <body class="bg-gray-100">
 
     <div class="relative w-full h-[500px] text-white flex items-center justify-center text-center overflow-hidden rounded-b-2xl shadow-lg">
-        
         <img src="headeer.png" alt="Manaa Living Header" class="absolute top-0 left-0 w-full h-full object-cover z-0">
-
         <div class="absolute top-0 left-0 w-full h-full bg-black/60 z-10"></div>
-
         <header class="relative z-20 p-4">
-            <h1 class="text-4xl md:text-5xl font-bold mb-2">AI Opportunity Audit</h1>
-            <h2 class="text-2xl md:text-3xl font-semibold text-gray-300">Manaa Living | Hospitality Sector Analysis</h2>
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">Your AI Report</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold text-gray-300">For Manaa Living | Hotels & Travel</h2>
             <div class="mt-4">
                 <span class="inline-block bg-white/20 rounded-full px-3 py-1 text-sm font-semibold text-white">🔊 Sound On</span>
             </div>
@@ -66,15 +151,10 @@
     </div>
 
     <div class="container mx-auto p-4 md:p-8">
-
-        </div>
-
-</body>
-        
         <main>
             <section id="score" class="mb-16">
                 <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 text-center">
-                    <h3 class="text-xl font-bold text-brand-dark mb-4">Overall AI Opportunity Score</h3>
+                    <h3 class="text-xl font-bold text-brand-dark mb-4">Your Overall AI Score</h3>
                     <div class="relative w-64 h-64 mx-auto">
                         <canvas id="overallScoreChart"></canvas>
                         <div class="absolute inset-0 flex items-baseline justify-center pt-20">
@@ -83,26 +163,25 @@
                         </div>
                     </div>
                     <p class="mt-6 max-w-2xl mx-auto text-lg">
-                        This score indicates a <span class="font-bold text-brand-dark">High Potential</span> for impactful AI integration. While foundational tech exists, significant opportunities in customer-facing and content-driven areas are ripe for enhancement.
+                        This score means you have a <span class="font-bold text-brand-dark">big chance to grow with AI</span>. You have a good tech start. The best places to use AI are with your guests and your website content.
                     </p>
                 </div>
             </section>
 
             <section id="breakdown" class="mb-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-3xl font-bold text-brand-dark">Industry-Specific Scoring Breakdown</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg">Your score is calculated using our IA-AIOS framework, which adjusts scoring weights for the <span class="font-semibold">Hospitality & Tourism</span> industry. This model prioritizes the guest journey and dynamic content, as these are critical drivers of success in your sector.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">How We Scored Your Business</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">We scored you based on what works best for <span class="font-semibold">hotels and travel</span> businesses. For you, the most important things are the guest experience and fresh website content. Our scores focus on that.</p>
                 </div>
-
                 <div class="space-y-8">
                     <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h4 class="text-xl font-bold text-center mb-4 text-brand-dark">Hospitality Weighting Profile</h4>
+                        <h4 class="text-xl font-bold text-center mb-4 text-brand-dark">What Matters Most for Hotels</h4>
                         <div class="chart-container h-80 md:h-96">
                             <canvas id="industryWeightsChart"></canvas>
                         </div>
                     </div>
                     <div class="bg-white rounded-2xl shadow-lg p-6">
-                        <h4 class="text-xl font-bold text-center mb-4 text-brand-dark">Weighted Score Contribution</h4>
+                        <h4 class="text-xl font-bold text-center mb-4 text-brand-dark">Where Your Score Comes From</h4>
                         <div class="chart-container h-96 md:h-[450px]" style="max-width: 800px;">
                             <canvas id="scoreBreakdownChart"></canvas>
                         </div>
@@ -112,40 +191,40 @@
 
             <section id="priorities" class="mb-16">
                 <div class="text-center mb-8">
-                    <h3 class="text-3xl font-bold text-brand-dark">What To Do Next: Your Priority Matrix</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg">We use the Eisenhower Matrix to classify recommended AI solutions by urgency and importance, ensuring you focus on what delivers the most value, first.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">What to Do Next: Your Action Plan</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">We sort our ideas by what's urgent and important. This helps you focus on the tasks that give you the best results right away.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
                     <div class="bg-white border-l-8 border-brand-gold rounded-lg p-6 shadow-lg">
                         <h4 class="text-2xl font-bold text-brand-gold">Urgent & Important</h4>
-                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Do First: High-impact tasks that solve immediate problems.</p>
+                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Do These First: They have a big impact and solve problems now.</p>
                         <ul class="list-disc list-inside space-y-2 text-brand-dark">
-                            <li>AI-Powered Client Communication Automation</li>
-                            <li>Automated Document & Inquiry Processing</li>
+                            <li>AI to Help Talk to Guests</li>
+                            <li>AI to Handle Paperwork and Questions</li>
                         </ul>
                     </div>
                     <div class="bg-white border-l-8 border-gray-400 rounded-lg p-6 shadow-md">
                         <h4 class="text-2xl font-bold text-brand-dark">Important, Not Urgent</h4>
-                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Schedule: Strategic initiatives for long-term growth.</p>
+                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Plan for Later: Big ideas for future growth.</p>
                         <ul class="list-disc list-inside space-y-2 text-brand-dark">
-                            <li>Workflow & Process Analytics</li>
-                            <li>Predictive Client Intelligence & Personalization</li>
+                            <li>See How Your Business Works</li>
+                            <li>Understand and Personalize for Guests</li>
                         </ul>
                     </div>
                     <div class="bg-white border-l-8 border-gray-400 rounded-lg p-6 shadow-md">
                         <h4 class="text-2xl font-bold text-brand-dark">Urgent, Less Important</h4>
-                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Delegate: Quick tasks that can be easily handled.</p>
+                        <p class="text-gray-700 mt-2 mb-4 font-semibold">Give These Tasks to Others: Easy jobs that need to be done.</p>
                         <ul class="list-disc list-inside space-y-2 text-brand-dark">
-                            <li>Basic Appointment Scheduling Chatbot</li>
-                            <li>Contact Management System Upgrades</li>
+                            <li>Simple Chatbot for Bookings</li>
+                            <li>Update Your Contact List System</li>
                         </ul>
                     </div>
                     <div class="bg-gray-50 border-l-8 border-gray-300 rounded-lg p-6 shadow-md">
                         <h4 class="text-2xl font-bold text-gray-500">Less Urgent / Important</h4>
-                        <p class="text-gray-600 mt-2 mb-4 font-semibold">Eliminate/Delay: Lower priority tasks for future consideration.</p>
+                        <p class="text-gray-600 mt-2 mb-4 font-semibold">Don't Do Now: Low-priority tasks to think about later.</p>
                         <ul class="list-disc list-inside space-y-2 text-gray-700">
-                            <li>Advanced Internal Analytics Dashboards</li>
-                            <li>Complex, Multi-System Integrations</li>
+                            <li>Detailed Business Reports</li>
+                            <li>Connecting Many Systems Together</li>
                         </ul>
                     </div>
                 </div>
@@ -153,18 +232,18 @@
             
             <section id="roadmap" class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-3xl font-bold text-brand-dark">Your Tailored AI Roadmap</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg">Based on your classification as a <span class="font-semibold">Small Business</span> in the hospitality sector, we recommend a focus on cost-effective, high-impact solutions that can be implemented quickly.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">Your Step-by-Step AI Plan</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">Since you're a <span class="font-semibold">Small Business</span> in hospitality, we suggest starting with cheap, powerful ideas you can do fast.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-brand-gold">
                         <div class="text-center">
                             <div class="text-5xl font-black text-brand-dark">1</div>
-                            <h4 class="text-xl font-bold mt-2">AI Communication Hub</h4>
+                            <h4 class="text-xl font-bold mt-2">AI Chat Helper</h4>
                         </div>
-                        <p class="mt-4">Implement a basic chatbot on your website to handle common guest inquiries (check-in/out times, amenities, local tips) 24/7, reducing staff workload and improving guest satisfaction.</p>
+                        <p class="mt-4">Add a simple chatbot to your website. It can answer common questions 24/7, like check-in times or local tips. This frees up your staff and makes guests happier.</p>
                         <div class="mt-6 space-y-2 text-sm">
-                            <p><span class="font-bold">Focus:</span> Customer Experience</p>
+                            <p><span class="font-bold">Focus:</span> Guest Experience</p>
                             <p><span class="font-bold">Budget:</span> $500 - $2,000 / mo</p>
                             <p><span class="font-bold">Timeline:</span> 30 - 60 days</p>
                         </div>
@@ -172,11 +251,11 @@
                     <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-brand-gold">
                         <div class="text-center">
                            <div class="text-5xl font-black text-brand-dark">2</div>
-                            <h4 class="text-xl font-bold mt-2">Automated Scheduling</h4>
+                            <h4 class="text-xl font-bold mt-2">Automatic Bookings</h4>
                         </div>
-                        <p class="mt-4">Integrate an automated booking and scheduling tool that syncs with your availability, allowing guests to book stays, tours, or services directly without manual confirmation.</p>
+                        <p class="mt-4">Use a tool that lets guests book rooms or tours automatically. It will always know your availability, so you don't have to confirm by hand.</p>
                         <div class="mt-6 space-y-2 text-sm">
-                            <p><span class="font-bold">Focus:</span> Operational Process</p>
+                            <p><span class="font-bold">Focus:</span> Business Operations</p>
                             <p><span class="font-bold">Budget:</span> Included in existing platforms</p>
                             <p><span class="font-bold">Timeline:</span> &lt; 30 days (Quick Win)</p>
                         </div>
@@ -184,11 +263,11 @@
                     <div class="bg-white rounded-2xl shadow-lg p-6 border-t-8 border-brand-gold">
                         <div class="text-center">
                             <div class="text-5xl font-black text-brand-dark">3</div>
-                            <h4 class="text-xl font-bold mt-2">Content Generation Assist</h4>
+                            <h4 class="text-xl font-bold mt-2">Help with Website Content</h4>
                         </div>
-                        <p class="mt-4">Use AI tools to create engaging blog posts about local events, attractions, and travel tips. This boosts SEO, drives organic traffic, and provides valuable content for guests.</p>
+                        <p class="mt-4">Use AI to write blog posts about local events and tips. This brings more people to your website from Google and gives guests useful info.</p>
                          <div class="mt-6 space-y-2 text-sm">
-                            <p><span class="font-bold">Focus:</span> Content Management</p>
+                            <p><span class="font-bold">Focus:</span> Website Content</p>
                             <p><span class="font-bold">Budget:</span> $100 - $500 / mo</p>
                             <p><span class="font-bold">Timeline:</span> 30 - 60 days</p>
                         </div>
@@ -198,52 +277,50 @@
             
             <section id="timeline" class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-3xl font-bold text-brand-dark">Phased Implementation Plan</h3>
-                    <p class="mt-2 max-w-3xl mx-auto text-lg">We recommend a structured rollout to ensure smooth adoption and maximize return on investment. Each phase builds upon the last, creating a robust AI foundation for your business.</p>
+                    <h3 class="text-3xl font-bold text-brand-dark">Your Timeline</h3>
+                    <p class="mt-2 max-w-3xl mx-auto text-lg">We suggest doing this in steps. This makes it easier to manage and gets you the best results. Each step builds on the one before it.</p>
                 </div>
                 <div class="relative max-w-2xl mx-auto">
                     <div class="border-l-4 border-gray-300 absolute h-full top-0 left-4"></div>
                     <div class="mb-10 ml-12">
                         <div class="absolute w-8 h-8 bg-brand-dark rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">1</div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-bold text-brand-dark">Phase 1: Quick Wins (0-30 Days)</h4>
-                            <p class="mt-2">Deploy the <span class="font-semibold">Automated Scheduling</span> tool. This is a low-cost, high-impact solution that immediately streamlines a core business process and improves the user booking experience.</p>
+                            <h4 class="text-xl font-bold text-brand-dark">Phase 1: Quick Wins (First Month)</h4>
+                            <p class="mt-2">Set up the <span class="font-semibold">Automatic Booking</span> tool. It's cheap, powerful, and quickly makes booking easier for guests.</p>
                         </div>
                     </div>
                     <div class="mb-10 ml-12">
                         <div class="absolute w-8 h-8 bg-brand-dark rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">2</div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-bold text-brand-dark">Phase 2: Core Automation (30-90 Days)</h4>
-                            <p class="mt-2">Implement the <span class="font-semibold">AI Communication Hub (Chatbot)</span> and begin the <span class="font-semibold">Content Generation</span> strategy. This phase focuses on automating repetitive communication and building your online presence.</p>
+                            <h4 class="text-xl font-bold text-brand-dark">Phase 2: Main Tasks (Months 1-3)</h4>
+                            <p class="mt-2">Add the <span class="font-semibold">AI Chat Helper</span> and start creating <span class="font-semibold">Website Content</span>. This step automates common questions and helps more people find you online.</p>
                         </div>
                     </div>
                     <div class="ml-12">
                         <div class="absolute w-8 h-8 bg-brand-dark rounded-full -left-[18px] border-4 border-white flex items-center justify-center text-white font-bold">3</div>
                         <div class="bg-white p-6 rounded-lg shadow-lg">
-                            <h4 class="text-xl font-bold text-brand-dark">Phase 3: Optimization & Scaling (90-180 Days)</h4>
-                            <p class="mt-2">Analyze chatbot interaction data to refine responses. Scale up content production based on SEO performance. Begin exploring <span class="font-semibold">Data Utilization</span> opportunities like guest feedback analysis.</p>
+                            <h4 class="text-xl font-bold text-brand-dark">Phase 3: Improve and Grow (Months 3-6)</h4>
+                            <p class="mt-2">Check the chatbot chats to make it better. Write more content if it's helping your Google rank. Start looking at guest <span class="font-semibold">feedback with AI</span> to find ways to improve.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section id="video-instructions" class="mb-16">
-    <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-        <h3 class="text-2xl font-bold text-brand-dark mb-4 text-center">Video Instructions</h3>
-        <video controls class="w-full rounded-lg shadow-inner bg-black">
-            <source src="video/video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-</section>
+                <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 class="text-2xl font-bold text-brand-dark mb-4 text-center">Video Walkthrough</h3>
+                    <video controls class="w-full rounded-lg shadow-inner bg-black">
+                        <source src="video/video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </section>
         </main>
         
         <section id="download-package" class="mb-16">
             <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
-                <h3 class="text-3xl font-bold text-brand-dark">Download Full Briefing Package</h3>
-                <p class="mt-2 max-w-2xl mx-auto text-lg">Download all assets from this briefing, including the interactive report, media files, and the formal written analysis, packaged in a single .zip file.</p>
-                <!-- === ACTION REQUIRED: REPORT DOCUMENT === -->
-                <!-- Place your report document (e.g., "Manaa_Living_AI_Audit_Report.docx") in the root of the project folder. -->
+                <h3 class="text-3xl font-bold text-brand-dark">Get Your Full Report</h3>
+                <p class="mt-2 max-w-2xl mx-auto text-lg">Get everything in one download. This includes this report, the audio and video files, and our detailed written notes.</p>
                 <button id="download-btn" class="mt-6 bg-brand-gold text-white font-bold py-3 px-8 rounded-lg shadow-md hover:bg-opacity-90 transition-transform transform hover:scale-105">
                     Download All Files
                 </button>
@@ -252,9 +329,26 @@
         </section>
 
         <footer class="text-center mt-16 pt-8 border-t-2 border-gray-200">
-            <p class="text-sm">This report was generated by the Industry-Adaptive AI Opportunity Scoring (IA-AIOS) Framework.</p>
+            <p class="text-sm">Report created with our special scoring system for your industry.</p>
             <p class="text-xs text-gray-400 mt-1">Analysis Date: September 22, 2025</p>
         </footer>
+    </div>
+
+    <div id="chat-toggle">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.839 8.839 0 01-4.082-.973l-1.158.483a1 1 0 01-1.262-1.262l.483-1.158A8.839 8.839 0 012 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM4.812 14.12a6.839 6.839 0 003.813 1.293A6.977 6.977 0 0016 10c0-2.853-2.23-5.222-5.113-5.612a4.004 4.004 0 00-3.774 5.32c-.37.338-.683.74-1.001 1.168a6.81 6.81 0 00-1.299 2.244z" clip-rule="evenodd" />
+        </svg>
+    </div>
+    <div id="chat-window">
+        <div id="chat-header">
+            <span>Report Assistant</span>
+            <button id="close-button" class="text-xl font-extrabold">&times;</button>
+        </div>
+        <div id="chat-messages"></div>
+        <div id="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Ask about the score...">
+            <button id="send-button">Send</button>
+        </div>
     </div>
 
 <script>
@@ -296,7 +390,7 @@
                 options: { responsive: true, maintainAspectRatio: false, ...defaultTooltipOptions, scales: { r: { angleLines: { color: manaaPalette.mediumGrey }, grid: { color: manaaPalette.mediumGrey }, pointLabels: { font: { size: 12 }, color: manaaPalette.dark }, ticks: { backdropColor: 'transparent', color: manaaPalette.text, stepSize: 10 }, suggestedMin: 0, suggestedMax: 40 } }, plugins: { ...defaultTooltipOptions.plugins, legend: { display: false } } }
             });
 
-            const breakdownLabels = ['Customer Experience Optimization', 'Content Management Efficiency', 'Operational Process Indicators', 'Data Utilization Maturity', 'Technical Readiness'].map(wrapLabels);
+            const breakdownLabels = ['Guest Experience', 'Website Content', 'Business Operations', 'Using Data', 'Tech Setup'].map(wrapLabels);
             new Chart(document.getElementById('scoreBreakdownChart').getContext('2d'), {
                 type: 'bar', data: { labels: breakdownLabels, datasets: [{ label: 'Weighted Score', data: [34.0, 17.5, 9.0, 7.5, 4.0], backgroundColor: [ manaaPalette.dark, '#555555', manaaPalette.gold, '#D3C5B9', manaaPalette.mediumGrey ], borderColor: manaaPalette.dark, borderWidth: 1 }] },
                 options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, ...defaultTooltipOptions, scales: { x: { beginAtZero: true, grid: { display: false }, ticks: { color: manaaPalette.dark } }, y: { grid: { display: false }, ticks: { color: manaaPalette.dark } } }, plugins: { ...defaultTooltipOptions.plugins, legend: { display: false } } }
@@ -304,60 +398,132 @@
         })();
 
         // Download Script
-        const downloadBtn = document.getElementById('download-btn');
-        const zipStatus = document.getElementById('zip-status');
-        
-        downloadBtn.addEventListener('click', async () => {
-            zipStatus.textContent = 'Zipping files, please wait...';
-            downloadBtn.disabled = true;
-            downloadBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        (function() {
+            const downloadBtn = document.getElementById('download-btn');
+            const zipStatus = document.getElementById('zip-status');
+            
+            if (!downloadBtn) return;
 
-            try {
-                const zip = new JSZip();
+            downloadBtn.addEventListener('click', async () => {
+                zipStatus.textContent = 'Putting files in a zip folder...';
+                downloadBtn.disabled = true;
+                downloadBtn.classList.add('opacity-50', 'cursor-not-allowed');
 
-                const filesToZip = [
-                    { name: 'Manaa_Living_AI_Audit_Report.docx', path: 'Manaa_Living_AI_Audit_Report.docx' },
-                    { name: 'assets/audio/audio_overview.mp3', path: 'assets/audio/audio_overview.mp3' },
-                    { name: 'assets/video/video_instructions.mp4', path: 'assets/video/video_instructions.mp4' },
-                ];
-                
-                // Add the current HTML file
-                const htmlContent = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
-                zip.file('index.html', htmlContent);
+                try {
+                    const zip = new JSZip();
 
-                for (const file of filesToZip) {
-                    try {
-                        const response = await fetch(file.path);
-                        if (!response.ok) {
-                           console.warn(`Could not fetch ${file.path}. Skipping file. This is expected if the file doesn't exist locally yet.`);
-                           continue;
+                    const filesToZip = [
+                        { name: 'Manaa_Living_AI_Audit_Report.docx', path: 'Manaa_Living_AI_Audit_Report.docx' },
+                        { name: 'assets/audio/audio.mp3', path: 'audio/audio.mp3' },
+                        { name: 'assets/video/video.mp4', path: 'video/video.mp4' },
+                        { name: 'assets/headeer.png', path: 'headeer.png' },
+                    ];
+                    
+                    const htmlContent = new Blob([document.documentElement.outerHTML], { type: 'text/html' });
+                    zip.file('index.html', htmlContent);
+
+                    for (const file of filesToZip) {
+                        try {
+                            const response = await fetch(file.path);
+                            if (!response.ok) {
+                               console.warn(`Could not fetch ${file.path}. Skipping file.`);
+                                continue;
+                            }
+                            const blob = await response.blob();
+                            zip.file(file.name, blob, {binary:true});
+                        } catch (e) {
+                             console.warn(`Error fetching ${file.path}. Skipping file.`, e);
                         }
-                        const blob = await response.blob();
-                        zip.file(file.name, blob);
-                    } catch (e) {
-                         console.warn(`Error fetching ${file.path}. Skipping file.`, e);
                     }
-                }
 
-                const content = await zip.generateAsync({ type: 'blob' });
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(content);
-                link.download = 'Manaa_Living_AI_Briefing_Package.zip';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                zipStatus.textContent = 'Download complete!';
-            } catch (error) {
-                console.error('Error creating zip file:', error);
-                zipStatus.textContent = 'Error creating package. See console for details.';
-            } finally {
-                downloadBtn.disabled = false;
-                downloadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            }
-        });
+                    const content = await zip.generateAsync({ type: 'blob' });
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(content);
+                    link.download = 'Manaa_Living_AI_Briefing_Package.zip';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    zipStatus.textContent = 'Download complete!';
+                } catch (error) {
+                    console.error('Error creating zip file:', error);
+                    zipStatus.textContent = 'Error making the zip file. Check the console.';
+                } finally {
+                    downloadBtn.disabled = false;
+                    downloadBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        })();
+
+        // Chatbot Script
+        (function() {
+            const chatToggle = document.getElementById("chat-toggle");
+            const chatWindow = document.getElementById("chat-window");
+            const closeButton = document.getElementById("close-button");
+            const sendButton = document.getElementById("send-button");
+            const chatInput = document.getElementById("chat-input");
+            const chatMessages = document.getElementById("chat-messages");
+
+            if (!chatToggle) return;
+
+            const qnaData = [
+                { q: "score", a: "The overall score is <strong>72/100</strong>. This means you have a big chance to grow with AI, especially with guests and your website content." },
+                { q: "how did you score", a: "We scored you based on what works best for hotels. For you, the most important things are the <strong>guest experience</strong> and <strong>fresh website content</strong>." },
+                { q: "what should i do first", a: "The first and quickest win is to set up an <strong>Automatic Booking</strong> tool. We recommend this for Phase 1 (the first month)." },
+                { q: "what is the action plan", a: "Your action plan is sorted by what's urgent and important. The top priorities are using <strong>AI to help talk to guests</strong> and to <strong>handle paperwork</strong>." },
+                { q: "chatbot", a: "The 'AI Chat Helper' is a simple chatbot for your website to answer common guest questions 24/7. We suggest this for Phase 2, after setting up automatic bookings." },
+                { q: "cost", a: "The roadmap suggests budgets like <strong>$500 - $2,000/mo</strong> for the AI Chat Helper and <strong>$100 - $500/mo</strong> for help with website content. Automatic booking tools might be included in software you already use." },
+                { q: "timeline", a: "The plan is in 3 phases. Phase 1 (0-30 days) is for quick wins like auto-bookings. Phase 2 (1-3 months) is for the chatbot and content. Phase 3 (3-6 months) is for improving and growing." },
+            ];
+
+            const getChatbotResponse = (query) => {
+                const lowerQuery = query.toLowerCase().trim();
+                if (lowerQuery === "") return null;
+
+                const found = qnaData.find(item => lowerQuery.includes(item.q));
+                if (found) return found.a;
+
+                return "I'm not sure about that. I can answer questions about your <strong>score</strong>, the <strong>action plan</strong>, the <strong>cost</strong>, or the <strong>timeline</strong>. Please try rephrasing.";
+            };
+
+            const appendMessage = (sender, text) => {
+                const msg = document.createElement("div");
+                msg.classList.add("message", sender);
+                msg.innerHTML = text;
+                chatMessages.appendChild(msg);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            };
+
+            const handleUserInput = () => {
+                const userText = chatInput.value;
+                const botResponse = getChatbotResponse(userText);
+                if (!botResponse) return;
+
+                appendMessage("user", userText);
+                chatInput.value = "";
+
+                setTimeout(() => {
+                    appendMessage("bot", botResponse);
+                }, 500);
+            };
+
+            chatToggle.onclick = () => {
+                chatWindow.style.display = chatWindow.style.display === "flex" ? "none" : "flex";
+            };
+            closeButton.onclick = () => {
+                chatWindow.style.display = "none";
+            };
+            sendButton.onclick = handleUserInput;
+            chatInput.onkeypress = (e) => {
+                if (e.key === "Enter") handleUserInput();
+            };
+            
+            // Add initial welcome message
+            setTimeout(() => {
+                appendMessage("bot", "Hello! I can answer questions about this report. Try asking 'What's the score?' or 'What should I do first?'.");
+            }, 1000);
+        })();
     });
 </script>
 </body>
 </html>
-
